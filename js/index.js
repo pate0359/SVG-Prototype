@@ -118,30 +118,3 @@ $(window).load(function () {
   	});
 	
 });
-
-var timerFunction = null;
-
-    function startAnimation() {
-        if(timerFunction == null) {
-            timerFunction = setInterval(animate, 20);
-        }
-    }
-
-    function stopAnimation() {
-        if(timerFunction != null){
-            clearInterval(timerFunction);
-            timerFunction = null;
-        }
-    }
-
-    function animate() {
-        var element = $(microphone).find("#indicator");
-        var x = $(element).attr("width");
-		var off=$(microphone).find("#indicator").getBBox();
-		console.log(off);
-        var newX = 2 + parseInt(x);
-        if(newX > 500) {
-            newX = 20;
-        }
-        $(element).attr("x", newX);
-    }
