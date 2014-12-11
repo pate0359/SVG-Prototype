@@ -1,0 +1,50 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/*For headphone*/
+.red
+{
+	background-color: red;
+}
+
+.green
+{
+	background-color: green;
+}
+
+.blinkIcon
+{
+}
+
+/*For microphone*/
+
+.path3 {
+  stroke-dasharray: 10;
+  stroke-dashoffset: 10;
+  animation: dash 5s linear alternate infinite;
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.blink {
+      animation: blink 1s steps(5, start) infinite;
+      -webkit-animation: blink 1s steps(5, start) infinite;
+    }
+    @keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
+    @-webkit-keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
+
