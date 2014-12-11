@@ -17,7 +17,8 @@ $(document).ready(function () {
 $(window).load(function () {
 
 //	alert("load");
-	// for headphone
+/************* for Headphone *****************/
+	
 	var a = document.getElementById("svg-hp");
 	var headphone = a.contentDocument; //get the inner DOM of ex.svg
 	var delta=$(headphone).find("#HeadPhone");
@@ -26,34 +27,64 @@ $(window).load(function () {
 	leftEar.attr("fill", "red");
 	rightEar.attr("fill", "red");
 	
-//	delta.className="path3";
-//	
-////	var path = svgDoc.querySelector("path3");
-//	var total_length = delta.getTotalLength();
-//	console.log("lenght "+total_length);
+	// Fade in/out for Bluetooth button
+		function runItLeft() {
+			   $(headphone).find("#BL-left").animate({opacity:'1'}, 800);
+			   $(headphone).find("#BL-left").animate({opacity:'0.2'}, 800, runItLeft);
+			
+			}
+			runItLeft();
+	
+	function runItR() {
+			   $(headphone).find("#BL-right").animate({opacity:'1'}, 800);
+			   $(headphone).find("#BL-right").animate({opacity:'0.2'}, 800, runItR);
+			
+			}
+			runItR();
+	
+	
+	$(headphone).find("#rect-right").on("mouseover", function () {
+		
+		$(headphone).find("#BL-left").stop();
+		$(headphone).find("#BL-left").opacity=1.0
+		$(headphone).find("#BL-right").stop();
+		$(headphone).find("#BL-right").opacity=1.0
+	});
+	$(headphone).find("#rect-right").on("mouseover", function () {
+		
+		$(headphone).find("#BL-left").stop();
+		$(headphone).find("#BL-left").opacity=1.0
+		$(headphone).find("#BL-right").stop();
+		$(headphone).find("#BL-right").opacity=1.0
+	});
+	
+	$(headphone).find("#earbird-left").on("mouseover", function () {
+		
+		$(headphone).find("#BL-left").stop();
+		$(headphone).find("#BL-left").opacity=1.0
+		$(headphone).find("#BL-right").stop();
+		$(headphone).find("#BL-right").opacity=1.0
+	});
+	$(headphone).find("#earbird-right").on("mouseover", function () {
+		
+		$(headphone).find("#BL-left").stop();
+		$(headphone).find("#BL-left").opacity=1.0
+		$(headphone).find("#BL-right").stop();
+		$(headphone).find("#BL-right").opacity=1.0
+	});
+	
 
 	$(delta).on("click", function () {
-//		alert("headphone");
 		
-		var blu_left = $(headphone).find("#stick"); 
+		var blu_left = $(headphone).find("#BL-left"); 
 		var blu_right = $(headphone).find("#BL-right"); 
-		
-//		blu_left.className="blink";
-//		blu_right.className="blink";
-//		
-		$(blu_left).attr("class", "blink");
 		
 		leftEar.attr("fill", "green");
 		rightEar.attr("fill", "green");
 		
 	});
 
-	// for micro phone
-	
-	
-//	$(indicator ).click(function() {
-//		  $( this ).toggleClass( "highlight" );
-//		});
+/************* for Microphone *****************/
 	
 	var b = document.getElementById("svg-mp");
 	var microphone = b.contentDocument; //get the inner DOM of ex.svg
@@ -62,37 +93,28 @@ $(window).load(function () {
 	var indicator=$(microphone).find("#indicator");
 	console.log("indicator"+indicator);
 	indicator.attr("fill", "red");
-
-	$(microphone).find("#cable").attr("x","20");
-		$(microphone).find("#cable").attr("y","20");
+	
+	function runItCabel() {
+			   $(microphone).find("#cable").animate({opacity:'1'}, 600);
+			   $(microphone).find("#cable").animate({opacity:'0.4'}, 600, runItCabel);
+			
+			}
+	runItCabel();
 	
 	
 	$(deltab).on("click", function () {
-		alert("microphone clicked");
-		
-		$(microphone).find("#microphone-svg").attr("fill","red"); //toggleClass( "highlight" );
-		
-		var tooltip = d3.select("#indicator");
-		var tooltipParent = tooltip.node().parentElement;
 
-//		var matrix = this.getTransformToElement(tooltipParent)
-		  var matrix =this.getTransformToElement(tooltipParent).translate(+this.getAttribute("cx"),+this.getAttribute("cy"));
-      console.log(matrix);
-		
-		console.log(tooltip);
-//		var HTMLabsoluteTip = d3.select("div.tooltip.absolute");
-//		var HTMLfixedTip = d3.select("div.tooltip.fixed");
+		$(microphone).find("#indicator").attr("fill","green");
 		
 	});
 		
 	$(microphone).find("#microphone").on( "mouseover", function() {
-    	$(microphone).find("#indicator").attr("fill","green");
-//		startAnimation();
+		$(microphone).find("#cable").opacity=1;
+		$(microphone).find("#cable").stop();
 		
 	}).on( "mouseleave", function() {
 		
 		$(microphone).find("#indicator").attr("fill","red");
-//		stopAnimation();
   	});
 	
 });
@@ -114,10 +136,7 @@ var timerFunction = null;
 
     function animate() {
         var element = $(microphone).find("#indicator");
-//		element.transform( 'm0.9915, 0.1301, -0.1301, 0.9915, 63.9829 -8.3579' );
-//		element.width
         var x = $(element).attr("width");
-//		SVGRect getBBox();
 		var off=$(microphone).find("#indicator").getBBox();
 		console.log(off);
         var newX = 2 + parseInt(x);
