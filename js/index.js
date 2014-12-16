@@ -12,7 +12,50 @@ var rightEar
 
 $(document).ready(function () {
 
+	
+	loadSVGInlineH();
+	loadSVGInlineM();
 });
+
+function loadSVGInlineH()
+{
+	
+    var SVGFile="headphone.svg"
+    var loadXML = new XMLHttpRequest;
+    function handler(){
+        if(loadXML.readyState == 4 && loadXML.status == 200)
+        {
+			alert("loadSVGInlineH");
+            $("body").innerHTML=loadXML.responseText
+        }
+    }
+    if (loadXML != null){
+        loadXML.open("GET", SVGFile, true);
+        loadXML.onreadystatechange = handler;
+        loadXML.send();
+    }
+}
+
+function loadSVGInlineM()
+{
+	
+    var SVGFile="microphone.svg"
+    var loadXML = new XMLHttpRequest;
+    function handler(){
+        if(loadXML.readyState == 4 && loadXML.status == 200)
+        {
+			alert("loadSVGInlineM");
+            $("body").innerHTML=loadXML.responseText
+        }
+    }
+    if (loadXML != null){
+        loadXML.open("GET", SVGFile, true);
+        loadXML.onreadystatechange = handler;
+        loadXML.send();
+    }
+}
+
+
 
 $(window).load(function () {
 
